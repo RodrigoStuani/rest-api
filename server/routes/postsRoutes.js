@@ -1,13 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const postsService = require('../service/postsService');
 
 router.get('/posts', async function(req, resp) {
-  resp.json([{
-    id: 1,
-    title: 'REST API: Métodos',
-    content: '...',
-    date: new Date()
-  }]);  
+  const posts = await postsService.getPosts();
+  resp.json(posts);
 }); // Retorna uma lista todos recursos posts
 
 router.get('/posts/:id', async function(req, resp) {
